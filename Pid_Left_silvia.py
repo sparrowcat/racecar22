@@ -19,8 +19,8 @@ class SafetyControllerNode:
 	print t.to_sec()
         for repeat in range(0,1799):
             drivemsg = AckermannDriveStamped()
-            drivemsg.drive.speed = 2
-	    drivemsg.drive.steering_angle = -1
+            drivemsg.drive.speed = 2  #for pid right, this value is 0.5 (idk why) -Silvia
+	    drivemsg.drive.steering_angle = -1  #for pid left, this value is 1
 	    print drivemsg
 	    self.pub.publish(drivemsg)
         
@@ -41,9 +41,9 @@ class SafetyControllerNode:
         drivemsg = AckermannDriveStamped()
         drivemsg.drive.speed = .5
         if avg < 0.5:
-            drivemsg.drive.steering_angle = -0.1
+            drivemsg.drive.steering_angle = -0.1  #for pid right, this value is 0.1
         elif avg > 0.6:
-            drivemsg.drive.steering_angle = 0.1
+            drivemsg.drive.steering_angle = 0.1  #for pid right, this value is -0.1
         else:
             drivemsg.drive.steering_angle = 0
         self.pub.publish(drivemsg)
