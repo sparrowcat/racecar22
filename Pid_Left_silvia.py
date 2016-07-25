@@ -22,7 +22,7 @@ class SafetyControllerNode:
             drivemsg.drive.speed = 2  #for pid right, this value is 0.5 (idk why) -Silvia
 	    drivemsg.drive.steering_angle = -1  #for pid left, this value is 1
 	    print drivemsg
-	    self.pub.publish(drivemsg)
+	    self.pub.publish(drivemsg)  
         
         print "done running pre set"
 
