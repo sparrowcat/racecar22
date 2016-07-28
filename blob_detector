@@ -79,7 +79,7 @@ class blob_detector:
                 cent.y = y/height
                 box = cv2.cv.BoxPoints(rect)
                 box = np.int0(box)
-                Arr.append((Float64(area),cent,String(c))
+                Arr.append((Float64(area),cent,String(c)))
                 BoxArr.append(box)#does not matter the order
                 '''
                 c_size = cv2.contourArea(i)
