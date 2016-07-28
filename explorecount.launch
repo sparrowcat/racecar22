@@ -1,0 +1,13 @@
+<launch>
+  #need to check package names
+  <node name="potential" pkg="racecar22" type="potential.py"/>
+  <node name="safety" pkg="racecar22" type="safety.py"/>
+
+
+  #should launch racecar and ZED
+  <include file="$(find racecar)/launch/teleop.launch">
+    <arg name="racecar_version" value="$(arg racecar_version)" />
+    <arg name="run_camera" value="$(arg run_camera)" />
+  </include>
+  
+</launch>
