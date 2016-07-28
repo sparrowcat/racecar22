@@ -1,4 +1,4 @@
-#TeaM SASS
+#teaM SASS
 ~all girl racecar group~
 # racecar22
 bleb
