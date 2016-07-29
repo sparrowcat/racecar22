@@ -24,9 +24,9 @@ class safety():
 
 	def set_reverse_angle(degree):
 		if degree < 540:
-			self.reverse.drive.steering_angle = 0.5
-		else:
 			self.reverse.drive.steering_angle = -0.5
+		else:
+			self.reverse.drive.steering_angle = 0.5
 
 
 if __name__ == "__main__":
