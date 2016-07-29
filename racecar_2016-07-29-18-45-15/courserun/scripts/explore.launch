@@ -1,0 +1,14 @@
+<launch>
+	<node name="potential" pkg="courserun" type="potential.py"/>
+	<node name="safety" pkg="courserun" type="safety2.py"/>
+	<node name="screenshot" pkg="courserun" type "screenshot.py"/>
+	<node name="blobdetect" pkg="coursrun" type="blob_detector.py"/>
+
+	<include file="$(find racecar)/launch/teleop.launch">
+		<arg name="racecar_version" value="$(arg racecar_version)" />
+		<arg name="run_camera" value="$(arg run_camera)" />
+	</include>
+</launch>
+
+	
+
