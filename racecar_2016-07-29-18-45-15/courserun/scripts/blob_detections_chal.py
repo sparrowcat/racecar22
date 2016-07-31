@@ -17,7 +17,7 @@ color_map = {"red": (np.array([0,190,100]), np.array([15,255,255])),\
 	"green": (np.array([35,100,200]), np.array([80,255,255])),\
 	"yellow": (np.array([20,200,150]), np.array([30,255,255])),\
 	"blue": (np.array([90,100,100]), np.array ([150,255,255])),\
-	"pink": (np.array([160, 120, 100]), np.array ([180, 255, 255]))}
+	"pink": (np.array([146, 30, 75]), np.array ([165, 255, 255]))}
 	
 class blob_detector:
 	def __init__(self):
