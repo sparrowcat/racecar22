@@ -1,13 +1,10 @@
 <!-- -*- mode: XML -*- -->
 
 <launch>
-  #need to check package names
+  <node name="red_green" pkg="courserun" type="red_green.py"/>
   <node name="wall_follower" pkg="courserun" type="wall_follower.py"/>
-  <node name="turn_controller" pkg="courserun" type="turn_controller.py"/>
   <node name="blob_detections_turn" pkg="courserun" type="blob_detections_turn.py"/>
 
-
-  #should launch racecar and ZED
   <include file="$(find racecar)/launch/teleop.launch"/>
   <include file="$(find zed_wrapper)/launch/zed.launch"/>
   
