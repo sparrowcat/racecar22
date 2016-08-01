@@ -2,7 +2,7 @@
 
 <launch>
   <node name="red_green" pkg="courserun" type="red_green.py"/>
-  <node name="wall_follower_tf" pkg="courserun" type="wall_follower_tf.py"/>
+  <node name="wall_follower_tc" pkg="courserun" type="wall_follower_tc.py"/>
   <node name="blob_detections_turn" pkg="courserun" type="blob_detections_turn.py"/>
 
   <include file="$(find racecar)/launch/teleop.launch"/>
