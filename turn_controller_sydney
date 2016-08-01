@@ -39,8 +39,7 @@ class MoveTowardImage:
 	def MoveToBlob(self, blob_detect): #Moves to the largest blob.
 		global Wall_Follow, Turning
                 drive_msg = AckermannDriveStamped() #Sets the drive message to the  AckermannDriveStamped message type
-		blob_Color = ColorRGBA()
-		
+
 		drive_msg.drive.speed = self.speed	#Sets a field of the drivemsg message.
 		drive_msg.drive.steering_angle = -.06	#Gets the position of the largest blob. The first will be the largest  blob because the blobs are sorted by size. (index 0 is biggest size).
 		
@@ -56,12 +55,12 @@ class MoveTowardImage:
 		largest_blob_pos = blob_detect.locations[0]
 		blob_x_pos = largest_blob_pos.x		#This will be in between 0 and 1 (inclusive) (0 is the left and 1 is the right)
 		blob_y_pos = largest_blob_pos.y		#Same thing here
-		blob_color = blob_detect.colors[0]	#In rgba
+		blob_color = blob_detect.colors[0]	#In strings
 
                 if (Wall_Follow == True and Turning == False):       #Stage 4. Stop subscriptions from this node.
 			rospy.loginfo("Stopping control system node and publishing to wall follower.")
 			#Intiate wall follow by publishing the color to the wall follow's topic.
-			color = "r" if (blob_color.r == 255) else "g"
+			color = "r" if (blob_color == "red") else "g"
 			self.pub_blob_color_func(color)
 
 			#stop further subscriptions and basically end the node
@@ -87,9 +86,9 @@ class MoveTowardImage:
 		if (Turning == True): 	#Stage 3. Start turning
 			rospy.loginfo("Turning")
 			if (turning_start_time + 4 > rospy.get_time()):	#Keeps turning for three seconds (approx)
-				if (blob_color.r == 255):
+				if (blob_color == "red"):
 					drive_msg.drive.steering_angle = 1.5
-				elif (blob_color.g == 255):
+				elif (blob_color == "green"):
 					drive_msg.drive.steering_angle = -1.5
 					
 				#If the blob color is red, turn left, else if it is green, turn right.
