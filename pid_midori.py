@@ -21,8 +21,9 @@ class pid_controller():
         self.mult = -1  # left
         self.start_ind = 580  # left
         self.end_ind = 1000  # left
-        self.side_sub = rospy.Subscriber("/racecar/JoyLRSelec", Bool, self.side_callback)
+        #self.side_sub = rospy.Subscriber("/racecar/JoyLRSelec", Bool, self.side_callback)
         self.pid_pub = rospy.Publisher("vesc/ackermann_cmd_mux/input/navigation", AckermannDriveStamped, queue_size=1)
+        rospy.Subscriber("/blob_color", String, self.color_callback)
         self.scan_sub = rospy.Subscriber("scan", LaserScan, self.pid_callback)
 
     def pid_callback(self, msg):
@@ -35,6 +36,16 @@ class pid_controller():
             self.driving.drive.steering_angle = self.mult * self.pid(self.kp, self.kd, self.ki, error)
         self.pid_pub.publish(self.driving)
 
+    def color_callback(self, msg):
+        if msg.data == "g":  # left wall
+            self.mult = -1
+            self.start_ind = 580
+            self.end_ind = 1000
+        else:  # right wall
+            self.mult = 1
+            self.start_ind = 80
+            self.end_ind = 500
+    
     def side_callback(self, msg):
         if msg.data:  # left wall
             self.mult = -1
